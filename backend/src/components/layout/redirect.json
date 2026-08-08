@@ -1,0 +1,26 @@
+{
+  "collectionName": "components_layout_redirect",
+  "info": {
+    "displayName": "Редирект"
+  },
+  "options": {},
+  "attributes": {
+    "from": {
+      "type": "string",
+      "required": true
+    },
+    "to": {
+      "type": "string",
+      "required": true
+    },
+    "code": {
+      "type": "enumeration",
+      "required": true,
+      "enum": [
+        "Permanent – 301",
+        "Temporary – 302"
+      ]
+    }
+  },
+  "config": {}
+}

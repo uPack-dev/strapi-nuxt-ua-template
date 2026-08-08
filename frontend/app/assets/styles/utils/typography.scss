@@ -1,0 +1,276 @@
+/* stylelint-disable */
+$thickness-family: (
+  'd': $font-family-default,
+  'a': $font-family-accent,
+);
+
+$thickness: (
+  't': 100,
+  'xl': 200,
+  'l': 300,
+  'r': 400,
+  'm': 500,
+  's': 600,
+  'b': 700,
+);
+
+$typography: (
+  'hero-title': (
+    font-size: 64,
+    line-height: 59,
+  ),
+  'hero-accent': (
+    font-size: 64,
+    line-height: 59,
+  ),
+  'hero-caption': (
+    font-size: 40,
+    line-height: 44,
+  ),
+  'd1': (
+    font-size: 55,
+    line-height: 63,
+  ),
+  'd2': (
+    font-size: 45,
+    line-height: 50,
+  ),
+  'h1': (
+    font-size: 50,
+    line-height: 55,
+  ),
+  'h2': (
+    font-size: 40,
+    line-height: 44,
+  ),
+  'h3': (
+    font-size: 30,
+    line-height: 30,
+  ),
+  'h4': (
+    font-size: 28,
+    line-height: 28,
+  ),
+  'h5': (
+    font-size: 24,
+    line-height: 29,
+  ),
+  'h6': (
+    font-size: 23,
+    line-height: 23,
+    letter-spacing: 0.02,
+  ),
+  's1': (
+    font-size: 22,
+    line-height: 26,
+  ),
+  's2': (
+    font-size: 20,
+    line-height: 24,
+  ),
+  's3': (
+    font-size: 19,
+    line-height: 23,
+  ),
+  'i1': (
+    font-size: 24,
+    line-height: 29,
+  ),
+  'i2': (
+    font-size: 20,
+    line-height: 24,
+  ),
+  'i3': (
+    font-size: 16,
+    line-height: 19,
+  ),
+  'button': (
+    font-size: 22,
+    line-height: 27,
+  ),
+  'advantages-card': (
+    font-size: 22,
+    line-height: 22,
+    letter-spacing: 0.02,
+  ),
+  'auditory-card': (
+    font-size: 28,
+    line-height: 28,
+    letter-spacing: 0.02,
+  ),
+  'system-advantages-title': (
+    font-size: 28,
+    line-height: 28,
+    letter-spacing: 0.02,
+  ),
+  'system-advantages-description': (
+    font-size: 20,
+    line-height: 20,
+  ),
+  'system-advantages-number': (
+    font-size: 190,
+    line-height: 190,
+  ),
+);
+
+$typography-mobile: (
+  'hero-title': (
+    font-size: 40,
+    line-height: 44,
+  ),
+  'hero-accent': (
+    font-size: 29,
+    line-height: 32,
+  ),
+  'hero-caption': (
+    font-size: 27,
+    line-height: 30,
+  ),
+  'd1': (
+    font-size: 27,
+    line-height: 30,
+  ),
+  'd2': (
+    font-size: 27,
+    line-height: 30,
+  ),
+  'h1': (
+    font-size: 28,
+    line-height: 31,
+  ),
+  'h2': (
+    font-size: 24,
+    line-height: 27,
+  ),
+  'h3': (
+    font-size: 20,
+    line-height: 20,
+  ),
+  'h4': (
+    font-size: 20,
+    line-height: 23,
+  ),
+  'h5': (
+    font-size: 18,
+    line-height: 22,
+  ),
+  'h6': (
+    font-size: 23,
+    line-height: 23,
+    letter-spacing: 0.02,
+  ),
+  's1': (
+    font-size: 18,
+    line-height: 22,
+  ),
+  's2': (
+    font-size: 18,
+    line-height: 22,
+  ),
+  's3': (
+    font-size: 16,
+    line-height: 19,
+  ),
+  'i1': (
+    font-size: 20,
+    line-height: 24,
+  ),
+  'i2': (
+    font-size: 20,
+    line-height: 24,
+  ),
+  'i3': (
+    font-size: 16,
+    line-height: 19,
+  ),
+  'button': (
+    font-size: 18,
+    line-height: 22,
+  ),
+  'advantages-card': (
+    font-size: 20,
+    line-height: 20,
+    letter-spacing: 0.02,
+  ),
+  'auditory-card': (
+    font-size: 18,
+    line-height: 18,
+    letter-spacing: 0.02,
+  ),
+  'system-advantages-title': (
+    font-size: 20,
+    line-height: 20,
+    letter-spacing: 0.02,
+  ),
+  'system-advantages-description': (
+    font-size: 16,
+    line-height: 19,
+  ),
+  'system-advantages-number': (
+    font-size: 120,
+    line-height: 120,
+  ),
+);
+
+// Tablet-only overrides (between sm and md); labels not listed here keep
+// the mobile sizes on tablet.
+$typography-tablet: (
+  'd1': (
+    font-size: 40,
+    line-height: 44,
+  ),
+);
+
+@mixin typography($name, $fWeight: 'r', $fFamily: 'd') {
+  $styles: map-get($typography, $name);
+
+  font-size: em(map-get($styles, font-size));
+  font-family: map-get($thickness-family, $fFamily), sans-serif;
+  line-height: calc(
+    map-get($styles, line-height) / map-get($styles, font-size)
+  );
+
+  @if map-has-key($styles, letter-spacing) {
+    $letterSpacing: map-get($styles, letter-spacing);
+    letter-spacing: #{$letterSpacing}em;
+  }
+
+  text-transform: map-get($styles, text-transform);
+  font-weight: map-get($thickness, $fWeight);
+}
+
+@mixin typography-tablet($name, $fWeight: 'r', $fFamily: 'd') {
+  $styles: map-get($typography-tablet, $name);
+
+  font-size: em(map-get($styles, font-size));
+  font-family: map-get($thickness-family, $fFamily), sans-serif;
+  line-height: calc(
+    map-get($styles, line-height) / map-get($styles, font-size)
+  );
+
+  @if map-has-key($styles, letter-spacing) {
+    $letterSpacing: map-get($styles, letter-spacing);
+    letter-spacing: #{$letterSpacing}em;
+  }
+
+  text-transform: map-get($styles, text-transform);
+  font-weight: map-get($thickness, $fWeight);
+}
+
+@mixin typography-mobile($name, $fWeight: 'r', $fFamily: 'd') {
+  $styles: map-get($typography-mobile, $name);
+
+  font-size: em(map-get($styles, font-size));
+  font-family: map-get($thickness-family, $fFamily), sans-serif;
+  line-height: calc(
+    map-get($styles, line-height) / map-get($styles, font-size)
+  );
+
+  @if map-has-key($styles, letter-spacing) {
+    $letterSpacing: map-get($styles, letter-spacing);
+    letter-spacing: #{$letterSpacing}em;
+  }
+
+  text-transform: map-get($styles, text-transform);
+  font-weight: map-get($thickness, $fWeight);
+}

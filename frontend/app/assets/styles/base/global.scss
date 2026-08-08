@@ -1,0 +1,127 @@
+.section-wrapper {
+  padding-top: var(--pt);
+  padding-bottom: var(--pb);
+  background-color: var(--bg);
+
+  @include media-breakpoint-down(md) {
+    padding-top: var(--pt-mobile);
+    padding-bottom: var(--pb-mobile);
+  }
+}
+
+.page {
+  padding-top: em(100);
+
+  @include media-breakpoint-down(md) {
+    padding-top: em($header-height-adaptive);
+  }
+
+  &--overlay {
+    padding-top: 0;
+
+    @include media-breakpoint-down(md) {
+      padding-top: 0;
+    }
+  }
+}
+
+.page-enter-active,
+.page-leave-active {
+  transition: all 0.6s;
+}
+
+.page-enter-from,
+.page-leave-to {
+  opacity: 0;
+  filter: blur(1rem) grayscale(1);
+}
+
+// Кросс-документные переходы (адресная строка, back/forward между полными
+// загрузками) — SPA-переход выше их не покрывает. Chrome/Edge/Safari 18.2+.
+@view-transition {
+  navigation: auto;
+}
+
+@keyframes page-doc-out {
+  to {
+    opacity: 0;
+    filter: blur(1rem) grayscale(1);
+  }
+}
+
+@keyframes page-doc-in {
+  from {
+    opacity: 0;
+    filter: blur(1rem) grayscale(1);
+  }
+}
+
+::view-transition-old(root) {
+  animation: page-doc-out 0.6s both;
+}
+
+::view-transition-new(root) {
+  animation: page-doc-in 0.6s both;
+}
+
+.ui-breadcrumbs {
+  display: block;
+  max-width: 100%;
+  margin: 0;
+  overflow: auto !important;
+
+  &__container {
+    display: flex;
+    align-items: center;
+    width: min-content;
+    margin: em(16) 0;
+  }
+
+  &__item {
+    width: max-content;
+    color: #999999;
+
+    &:not(:last-child) {
+      &::after {
+        display: inline-block;
+        margin: 0 em(4);
+        content: '/';
+      }
+    }
+
+    &--link {
+      color: $text-color-secondary;
+    }
+  }
+}
+
+.loader-spinner {
+  display: inline-block;
+  width: em(40);
+  height: em(40);
+  border: em(4) solid #cccccc;
+  border-top: em(4) solid #333333;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+// OverlayScrollbars theme — matches the project design tokens
+// Combined selector for higher specificity over library defaults
+.os-theme-app.os-scrollbar {
+  --os-size: 6px;
+  --os-handle-border-radius: 3px;
+  --os-handle-bg: #{rgba($color-orange, 0.55)};
+  --os-handle-bg-hover: #{rgba($color-orange, 0.85)};
+  --os-handle-bg-active: #{$color-orange};
+  --os-track-bg: #{rgba($color-ink, 0.04)};
+  --os-track-bg-hover: #{rgba($color-ink, 0.06)};
+  --os-track-bg-active: #{rgba($color-ink, 0.08)};
+
+  z-index: 9999;
+}

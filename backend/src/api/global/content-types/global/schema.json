@@ -1,0 +1,28 @@
+{
+  "kind": "collectionType",
+  "collectionName": "globals",
+  "info": {
+    "singularName": "global",
+    "pluralName": "globals",
+    "displayName": "Глобальні блоки"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title"
+    },
+    "global": {
+      "type": "dynamiczone",
+      "components": [
+        "blocks.template-block"
+      ]
+    }
+  }
+}

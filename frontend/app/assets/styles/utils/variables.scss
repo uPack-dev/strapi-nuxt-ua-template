@@ -1,0 +1,67 @@
+/* stylelint-disable scss/dollar-variable-empty-line-before */
+// colors
+$color-white: #ffffff;
+$color-black: #000000;
+$color-orange: #f4aa3d;
+$color-navy: #024177;
+$color-blue: #025297;
+$color-blue-light: #066bc1;
+$color-ink: #081b39;
+$color-slate: #13395b;
+$color-field: #e9eef6;
+$color-field-active: #ddeaf5;
+$color-field-text: #457ba9;
+$color-error: #c20000;
+$color-error-background: #ffeaea;
+$color-shadow: #00182d;
+
+$text-color-primary: $color-ink;
+$text-color-secondary: $color-white;
+$text-color-accent: $color-orange;
+$text-color-error: $color-error;
+
+$background-color-primary: $color-white;
+$background-color-secondary: $color-navy;
+$background-color-tertiary: $color-blue;
+$background-color-accent: $color-orange;
+$background-color-field: $color-field;
+$background-color-field-active: $color-field-active;
+$background-color-error: $color-error-background;
+
+$stroke-color-primary: $color-navy;
+$stroke-color-secondary: $color-white;
+$stroke-color-accent: $color-orange;
+
+$icon-color-primary: $color-navy;
+$icon-color-secondary: $color-white;
+$icon-color-accent: $color-orange;
+
+$strokes-radius: 999999;
+
+// paths
+$images-path: '/images';
+
+// timing
+$time-fast: 150ms;
+$time-normal: 250ms;
+$time-slow: 350ms;
+
+// font
+$font-size-default: 16;
+$font-family-default-name: 'Roboto Condensed Variable';
+$font-family-accent-name: 'Montserrat';
+$font-family-default: (
+  $font-family-default-name,
+  'Arial Narrow',
+  arial,
+  sans-serif
+);
+$font-family-accent: $font-family-accent-name, arial, sans-serif;
+
+// sizes
+$header-height: 100;
+$header-height-adaptive: 70;
+
+// other
+// $gap-desktop: 40;
+// $gap-mobile: 20;

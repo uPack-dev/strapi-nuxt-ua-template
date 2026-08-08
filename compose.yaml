@@ -1,0 +1,40 @@
+# Dev stack: Nuxt + Strapi. `docker compose up`
+# Front: http://localhost:3000  Admin: http://localhost:1337/admin
+name: app
+
+x-node: &node
+  image: node:22-bookworm-slim
+  working_dir: /app
+  # Without this the containers write dist/ and .nuxt/ back into the repo as
+  # root, and the next host-side build silently reuses the stale, unwritable
+  # output. Override UID/GID if your account is not 1000.
+  user: '${UID:-1000}:${GID:-1000}'
+  # ponytail: bind-mounts host node_modules (same node 22 / linux-x64, so native
+  # deps match). Run `pnpm install` on the host once; the containers start node
+  # directly because pnpm cannot see the host store, decides the bind-mounted
+  # node_modules is foreign, and tries to purge it before every run.
+  # If you ever run a different host node, add a named volume on /app/node_modules.
+
+services:
+  backend:
+    <<: *node
+    command: node node_modules/@strapi/strapi/bin.js develop
+    env_file: ./backend/.env
+    environment:
+      HOST: 0.0.0.0
+    volumes: ['./backend:/app']
+    ports: ['1337:1337']
+
+  frontend:
+    <<: *node
+    command: node node_modules/nuxt/bin/nuxt.mjs dev --host
+    env_file: ./frontend/.env
+    # The app builds browser-facing media URLs from serverUrl, so an internal
+    # http://backend:1337 would reach SSR but break every <img>. Host networking
+    # lets one address work from both sides; port 3000 is published as usual.
+    network_mode: host
+    environment:
+      NUXT_SERVER_URL: http://localhost:1337
+      NUXT_CLIENT_URL: http://localhost:1337
+    volumes: ['./frontend:/app']
+    depends_on: [backend]

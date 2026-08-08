@@ -1,0 +1,20 @@
+@mixin typography-class($typography, $suffix: false, $family-key: 'i') {
+  @each $label, $map in $typography {
+    $suffix-string: if($suffix, '-#{$suffix}', '');
+    $family-string: '-#{$family-key}';
+
+    .#{$label + $suffix-string + $family-string} {
+      @include typography($label, $suffix, $family-key);
+
+      @include media-breakpoint-down(md) {
+        @include typography-mobile($label, $suffix, $family-key);
+      }
+
+      @if map-has-key($typography-tablet, $label) {
+        @include media-breakpoint-between(sm, md) {
+          @include typography-tablet($label, $suffix, $family-key);
+        }
+      }
+    }
+  }
+}

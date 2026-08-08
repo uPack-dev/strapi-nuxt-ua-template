@@ -1,0 +1,47 @@
+{
+  "kind": "singleType",
+  "collectionName": "initials",
+  "info": {
+    "singularName": "initial",
+    "pluralName": "initials",
+    "displayName": "Початкові налаштування"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
+  "attributes": {
+    "seo": {
+      "type": "component",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "global.seo",
+      "repeatable": false
+    },
+    "robots": {
+      "type": "text",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "redirects": {
+      "type": "component",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "layout.redirect",
+      "repeatable": true
+    }
+  }
+}

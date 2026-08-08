@@ -1,0 +1,51 @@
+.hidden-mobile {
+  @include media-breakpoint-down(sm) {
+    display: none !important;
+  }
+}
+
+.hidden-tablet {
+  @include media-breakpoint-between(sm, md) {
+    display: none !important;
+  }
+}
+
+.hidden-desktop {
+  @include media-breakpoint-up(md) {
+    display: none !important;
+  }
+}
+
+.hidden-mobile-tablet {
+  @include media-breakpoint-down(md) {
+    display: none !important;
+  }
+}
+
+.hidden-mobile-desktop {
+  @include media-breakpoint-down(sm) {
+    display: none !important;
+  }
+
+  @include media-breakpoint-up(md) {
+    display: none !important;
+  }
+}
+
+.hidden-tablet-desktop {
+  @include media-breakpoint-up(sm) {
+    display: none !important;
+  }
+}
+
+.semi-transparent {
+  opacity: 0.5;
+}
+
+.no-wrap {
+  white-space: nowrap;
+}
+
+.accent {
+  color: $text-color-accent;
+}

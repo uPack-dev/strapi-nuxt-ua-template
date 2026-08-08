@@ -1,0 +1,35 @@
+{
+  "collectionName": "components_global_section_data",
+  "info": {
+    "displayName": "Дані секції"
+  },
+  "options": {},
+  "attributes": {
+    "paddingTop": {
+      "type": "integer",
+      "required": true,
+      "default": 75
+    },
+    "paddingTopMobile": {
+      "type": "integer",
+      "required": true,
+      "default": 75
+    },
+    "paddingBottom": {
+      "type": "integer",
+      "required": true,
+      "default": 75
+    },
+    "paddingBottomMobile": {
+      "type": "integer",
+      "required": true,
+      "default": 75
+    },
+    "background": {
+      "type": "string",
+      "default": "#fff",
+      "required": true
+    }
+  },
+  "config": {}
+}

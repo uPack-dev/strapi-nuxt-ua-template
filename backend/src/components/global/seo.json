@@ -1,0 +1,53 @@
+{
+  "collectionName": "components_global_seos",
+  "info": {
+    "displayName": "SEO"
+  },
+  "options": {},
+  "attributes": {
+    "siteName": {
+      "type": "string"
+    },
+    "siteDescription": {
+      "type": "string"
+    },
+    "favicon": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "ogTitle": {
+      "type": "string"
+    },
+    "ogDescription": {
+      "type": "string"
+    },
+    "ogImage": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "canonical": {
+      "type": "string"
+    },
+    "robots": {
+      "type": "string"
+    },
+    "schemaJson": {
+      "type": "json"
+    },
+    "schema": {
+      "type": "component",
+      "component": "global.schema",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}

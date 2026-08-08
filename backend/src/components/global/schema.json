@@ -1,0 +1,13 @@
+{
+  "collectionName": "components_global_schemata",
+  "info": {
+    "displayName": "Схема"
+  },
+  "options": {},
+  "attributes": {
+    "schema": {
+      "type": "json"
+    }
+  },
+  "config": {}
+}

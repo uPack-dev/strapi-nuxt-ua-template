@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_blocks_template_blocks",
+  "info": {
+    "displayName": "Блок шаблону"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "sectionData": {
+      "type": "component",
+      "component": "global.section-data",
+      "repeatable": false
+    }
+  },
+  "config": {}
+}

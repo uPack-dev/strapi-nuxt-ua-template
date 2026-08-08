@@ -1,0 +1,35 @@
+html {
+  @include hide-scroll;
+
+  text-size-adjust: 100%;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  height: stretch;
+}
+
+body {
+  @include hide-scroll;
+
+  display: flex;
+  flex-direction: column;
+  min-width: 360px;
+  min-height: 100vh;
+  min-height: stretch;
+  font-family: $font-family-default;
+  font-size: em($font-size-default);
+  font-weight: 400;
+  line-height: 1.2;
+  color: $text-color-primary;
+  background-color: $background-color-primary;
+}
+
+/* stylelint-disable-next-line selector-id-pattern -- framework-owned Nuxt root id */
+#__nuxt {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+}
+
+#app {
+  flex-grow: 1;
+}

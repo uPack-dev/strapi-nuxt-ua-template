@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_layout_menu_links",
+  "info": {
+    "displayName": "Пункти меню"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "slug": {
+      "type": "string"
+    },
+    "menuItems": {
+      "type": "component",
+      "component": "layout.sub-menu-links",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}

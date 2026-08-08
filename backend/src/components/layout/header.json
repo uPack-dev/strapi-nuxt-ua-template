@@ -1,0 +1,42 @@
+{
+  "collectionName": "components_layout_headers",
+  "info": {
+    "displayName": "Шапка"
+  },
+  "options": {},
+  "attributes": {
+    "logo": {
+      "type": "text"
+    },
+    "links": {
+      "type": "component",
+      "component": "layout.menu-links",
+      "repeatable": true
+    },
+    "contacts": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::contact.contact"
+    },
+    "socials": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::social.social"
+    },
+    "download": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "files"
+      ]
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images"
+      ]
+    }
+  },
+  "config": {}
+}
