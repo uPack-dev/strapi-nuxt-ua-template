@@ -16,10 +16,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libvips-dev \
     && rm -rf /var/lib/apt/lists/*
 
-# Manifests first for layer caching. patches/ is required — pnpm applies a
-# patched @strapi/design-system during install.
+# Manifests first for layer caching.
 COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
-COPY patches ./patches
 RUN pnpm install --frozen-lockfile
 
 COPY . .
