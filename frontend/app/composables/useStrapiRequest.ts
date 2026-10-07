@@ -1,7 +1,6 @@
 import {
-  BASE_POPULATE,
+  BLOCKS_POPULATE,
   PAGE_POPULATE,
-  PAGES_POPULATE,
   SEO_POPULATE,
 } from '@/configs/populates';
 import { isEmptyStrapiResponse } from '@/utils/strapiData';
@@ -34,11 +33,13 @@ export const useStrapiRequest = async (
   }
 
   const pageName = page === 'pages' ? page + '-' + slug : `${page}-item`;
-  const pagePopulate = PAGE_POPULATE[pageName] || [];
+  const pagePopulate = PAGE_POPULATE[pageName] || {};
 
-  let populate = [...SEO_POPULATE, ...pagePopulate, ...BASE_POPULATE];
-  if (page === 'pages') populate = [...populate, ...PAGES_POPULATE];
-  populate = [...new Set(populate)];
+  const populate = {
+    ...BLOCKS_POPULATE,
+    ...pagePopulate,
+    seo: { populate: SEO_POPULATE.map((path) => path.replace(/^seo\./, '')) },
+  };
 
   const { data, error } = await useAsyncData(
     `strapi-page:${page}:${slug}:${route.lang || 'default'}`,

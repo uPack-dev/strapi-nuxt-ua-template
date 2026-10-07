@@ -1,23 +1,23 @@
 import { BLOCKS } from '@/configs/blocks';
 import { useCollectionRequest } from '@/composables/useCollectionRequest';
+import { expandBlocks } from '@/utils/strapiData';
 
 /**
  * @param blocks - Strapi block records.
  * @returns Blocks enriched with requested collection data, or `undefined` on failure.
  * @example await useBlocksRequest([{ __component: 'blocks.hero' }])
  */
-export const useBlocksRequest = async (blocks: Array<Record<string, any>>) => {
+export const useBlocksRequest = async (
+  blocks: Array<Record<string, any>> = [],
+) => {
   const route = useRoute();
   const {
     public: { isDev },
   } = useRuntimeConfig();
-  const config = blocks.map((block) => {
-    const item = block.block?.global?.length ? block.block?.global[0] : block;
-    return {
-      ...BLOCKS[componentName(item.__component)],
-      ...item,
-    };
-  });
+  const config = expandBlocks(blocks).map((block) => ({
+    ...BLOCKS[componentName(block.__component)],
+    ...block,
+  }));
 
   function componentName(blockName: string): string {
     const cArrayData = blockName.split('.');
@@ -29,7 +29,7 @@ export const useBlocksRequest = async (blocks: Array<Record<string, any>>) => {
 
   function createRequest(block: Record<string, any>) {
     if (block.request) {
-      const params = block.request.params || {};
+      const params = { ...block.request.params };
       params.pagination = {
         page: route.query.page || 1,
         pageSize: block.pageSize || block.request?.pagination?.pageSize,

@@ -7,8 +7,8 @@
     ]"
   >
     <CBlockBuilder
-      v-for="block in pageData"
-      :key="block.id"
+      v-for="(block, index) in pageData"
+      :key="`${block.__component}:${block.id}:${index}`"
       :component="block.component"
       :component-name="block.__component"
       :block-data="block"

@@ -1,36 +1,31 @@
-/**
- * Базовые пути populate для страниц.
- * Добавляются ко всем типам страниц.
- * @type {string[]}
- */
-export const BASE_POPULATE: string[] = [
-  'blocks.image.desktop',
-  'blocks.image.tablet',
-  'blocks.image.mobile',
-  'blocks.buttons',
-  'blocks.items.image',
-  'blocks.items.image.desktop',
-  'blocks.items.image.tablet',
-  'blocks.items.image.mobile',
-  'blocks.items.link',
-  'blocks.items.items',
-  'blocks.button',
-  'blocks.contacts',
-  'blocks.socials',
-  'blocks.sectionData',
-];
+type Populate = Record<string, unknown>;
 
 /**
- * Дополнительные пути populate для типов `pages`.
- * @type {string[]}
+ * Фрагменты dynamic zone по UID компонента. Новый блок добавляется сюда
+ * вместе со схемой и получает тот же populate внутри многоразовых групп.
+ * @type {Record<string, Populate>}
  */
-export const PAGES_POPULATE: string[] = ['blocks.links'];
+export const BLOCK_FRAGMENTS: Record<string, Populate> = {
+  'blocks.template-block': { populate: { sectionData: true } },
+};
+
+/** Populate страниц с раскрытием всех блоков многоразовой группы. */
+export const BLOCKS_POPULATE: Populate = {
+  blocks: {
+    on: {
+      ...BLOCK_FRAGMENTS,
+      'blocks.reusable': {
+        populate: { block: { populate: { global: { on: BLOCK_FRAGMENTS } } } },
+      },
+    },
+  },
+};
 
 /**
  * Карта populate по имени коллекции (`<collection>-item`).
- * @type {Record<string, string[]>}
+ * @type {Record<string, Populate>}
  */
-export const PAGE_POPULATE: Record<string, string[]> = {};
+export const PAGE_POPULATE: Record<string, Populate> = {};
 
 /**
  * Populate для SEO-данных страницы. Включается во все запросы страниц.

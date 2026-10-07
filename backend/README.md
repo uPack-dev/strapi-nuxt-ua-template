@@ -4,7 +4,7 @@ Headless CMS for the site, built on **Strapi 5** (TypeScript). Ships a
 CMS-driven page model (dynamic-zone blocks), a Ukrainian admin locale and i18n
 wired end-to-end, plus a Docker image and a GHCR + Dokploy deploy workflow.
 
-- Framework: Strapi `5.50.1`, Node `>=20 <=26`, pnpm `>=10`
+- Framework: Strapi `5.57.0`, Node `>=20 <=26`, pnpm `>=10`
 - Default database: SQLite (`.tmp/data.db`); MySQL and PostgreSQL via env
 - Frontend: the Nuxt app in `../frontend`
 
@@ -111,7 +111,6 @@ comment in `config/database.ts` for why.
 ```
 config/                 Strapi config (server, database, plugins, middlewares, admin, api)
 database/migrations/    knex migrations, applied on boot
-patches/                pnpm patch for @strapi/design-system (see below)
 src/
   index.ts              register/bootstrap hooks
   admin/                admin customisation: uk locale, logo
@@ -119,12 +118,6 @@ src/
   components/           reusable component schemas
 types/generated/        written by Strapi on every boot — empty until the first `pnpm dev`
 ```
-
-`patches/@strapi__design-system@2.2.2.patch` fixes a crash in the admin JSON
-field: the design-system dist inlines its own `@codemirror/state` while creating
-the editor via the external `@uiw/react-codemirror`, so a `StateField`
-`instanceof` check fails and the edit view dies. `pnpm-workspace.yaml` pins
-design-system to `2.2.2` so the patch keeps applying — bump both together.
 
 ## Deployment
 
