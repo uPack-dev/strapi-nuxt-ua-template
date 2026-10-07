@@ -13,3 +13,16 @@ export const isEmptyStrapiResponse = (
 ): boolean =>
   response?.data == null ||
   (Array.isArray(response.data) && !response.data.length);
+
+/**
+ * Expands reusable groups in place without mutating the CMS response.
+ * @param blocks - Direct blocks and reusable group references.
+ * @returns Every group child in its original order; empty groups are skipped.
+ * @example expandBlocks([{ __component: 'blocks.reusable', block: { global: [] } }]) // []
+ */
+export const expandBlocks = (blocks: Array<Record<string, any>> = []) =>
+  (Array.isArray(blocks) ? blocks : []).flatMap((block) =>
+    block.__component === 'blocks.reusable'
+      ? block.block?.global || []
+      : [block],
+  );
